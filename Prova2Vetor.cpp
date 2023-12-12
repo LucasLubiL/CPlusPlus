@@ -5,12 +5,12 @@
 
 #include <iostream>
 #include <cstdlib>
-
+#include <locale.h>
 using namespace std;
 
 int main()
 {
-    
+    setlocale(LC_ALL,"Portuguese");
     int vetorM[3];
     int vetorU[3];
     srand(time(0));
