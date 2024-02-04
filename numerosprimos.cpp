@@ -1,36 +1,39 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-//BINARIO
+
+//PRIMOS
 
 int main()
 {
-
-  long long int num, N, resto, base = 2, soma = 0, i = 0;
-
+    int A,B,aux,divi,x;
 
 
-  cin >> N;
+    cin>>A>>B;
 
-  for(int j=0;j<N;j++){
-   cin >> num;
-   i=0;
-   soma=0;
-   base=2;
+    if(A>B){
+        aux=A;
+        A=B;
+        B=aux;
+    }
+    for(int i=A;i<=B;i++){
+        x=0;
+        for(int j=i-1;j>1;j--){
+            divi=i%j;
+            if(divi==0){
+                x=1;
 
-
-  while (num > 0) {
-    resto = num % 10;
-    soma = soma + (resto * pow(base, i));
-    num = num / 10;
-    i += 1;
-  }
-    cout << soma <<endl;
-  }
+            }
 
 
+        }
+        if(x!=1){
+
+            cout<<i<<" ";
+        }
 
 
+    }
 
     return 0;
 }
