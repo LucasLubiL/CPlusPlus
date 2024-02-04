@@ -2,38 +2,23 @@
 
 using namespace std;
 
-//PRIMOS
+
 
 int main()
 {
-    int A,B,aux,divi,x;
+    int N;
+    double nota,inter,inter2;
 
+    cin>>N;
 
-    cin>>A>>B;
-
-    if(A>B){
-        aux=A;
-        A=B;
-        B=aux;
-    }
-    for(int i=A;i<=B;i++){
-        x=0;
-        for(int j=i-1;j>1;j--){
-            divi=i%j;
-            if(divi==0){
-                x=1;
-
-            }
-
-
+    for(int i=0;i<N;i++){
+        cin>>nota>>inter>>inter2;
+        if(nota<inter && nota>inter2 || nota>inter && nota<inter2){
+            cout<<"True"<<endl;
         }
-        if(x!=1){
-
-            cout<<i<<" ";
+        else{
+            cout<<"False"<<endl;
         }
-
-
     }
-
     return 0;
 }
