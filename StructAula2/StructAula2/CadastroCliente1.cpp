@@ -1,3 +1,11 @@
+/*1. Criar uma struct para armazenar um cliente, contendo os seguintes dados: nome, data de nascimento, idade e sexo. O sexo é apenas uma letra (M ou F)
+e a data de nascimento deve ser armazenada numa struct de data, com 3 inteiros (dia, mês e ano). A idade deve ser calculada quando a data de nascimento
+for lida, e não solicitada ao usuário. Guarde a data atual numa variável da struct de data e crie uma função para calcular a idade.
+
+Após isso, criar um menu com 2 opções: cadastrar cliente e listar clientes. Na primeira, um cliente deve ser lido e na segunda exibidos todos os clientes
+em ordem de cadastro.Trate para que seu aplicativo armazene no máximo 50 clientes ao mesmo tempo.
+*/
+
 #include<stdio.h>
 
 struct Data{
@@ -85,10 +93,10 @@ int main() {
 
      while(op!=0){
 
-        printf("Escolha qual opera��o deseja fazer:\n");
+        printf("Escolha qual operação deseja fazer:\n");
         printf("Digite 1 - Cadastrar Cliente.\n");
         printf("Digite 2 - Listar Clientes.\n");
-        printf("Digite 0 - Finalizar Opera��o.\n");
+        printf("Digite 0 - Finalizar Operação.\n");
         scanf("%d",&op);
 
         if(op==1){
