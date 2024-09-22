@@ -9,9 +9,6 @@ struct Func{
    double beneficio;
    double desconto;
 
-   double maior=0;
-   char ganha[100];
-
    double ler(){
 
      printf("Nome:");
@@ -50,52 +47,72 @@ struct Lista{
   double beneficio;
   double desconto;
 
-  Func funcionario[3];
+  Func funcionario[10];
 
   double maior=0;
-  char ganha[100];
+  int ganha;
   double soma=0;
+  int cont=0;
 
   void func(){
 
-     for(int i=0;i<3;i++){
+     double temp;
 
-        double temp;
+     temp=funcionario[cont].ler();
+     cont++;
 
-        temp=funcionario[i].ler();
+     soma+=temp;
 
-        soma+=temp;
+     if(temp>maior){
 
-        if(temp>maior){
-
-           maior=temp;
-           strcpy(ganha,funcionario[i].nome);
-
-        }
-     }
-
-     for(int i=0;i<3;i++){
-
-        funcionario[i].imprimir();
+        maior=temp;
+        ganha=cont-1;
 
      }
 
-     tudo();
   }
 
-  void tudo(){
+   void imprimir(){
+       for(int i=0;i<cont;i++){
+           funcionario[i].imprimir();
+     }
 
-    printf("O funcionario que mais recebe é: %s\n",ganha);
-    printf("A media salarial da empresa é de: %.2lf\n",soma/3);
+   }
 
-  }
+   void tudo(){
+
+    printf("O funcionario que mais recebe e: %s\n",funcionario[ganha].nome);
+    printf("A media salarial da empresa e de: %.2lf\n",soma/cont);
+    printf("\n");
+
+   }
 
 };
 
 int main() {
 
     Lista funcionario;
-    funcionario.func();
+
+    int op=1;
+
+    while(op!=0){
+
+        printf("Digite qual operacao deseja fazer:\n");
+        printf("Digite 1 - cadastrar funcionario.\n");
+        printf("Digite 2 - mostrar dados dos funcionarios.\n");
+        printf("Digite 3 - media salarial da empresa e o funcionario que mais recebe na empresa.\n");
+        scanf("%d%*c",&op);
+        printf("\n");
+
+        if(op==1){
+            funcionario.func();
+        }else if(op==2){
+            funcionario.imprimir();
+        }else if(op==3){
+            funcionario.tudo();
+        }
+
+    }
 
     return 0;
 }
