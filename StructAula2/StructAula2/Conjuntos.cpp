@@ -1,18 +1,27 @@
 #include <stdio.h>
 
+
 struct Ler{
 
-   int num;
+   int num[10];
 
    void ler(){
 
      printf("Digite os numeros:\n");
      for(int i=0;i<10;i++){
-        scanf("%d",&num);
+        scanf("%d",&num[i]);
      }
      printf("\n");
 
    }
+   
+   void tela(){
+        
+        for(int i=0;i<10;i++){
+            printf("%d - ",num[i]);
+        }
+        
+    }
 
 };
 
@@ -24,15 +33,14 @@ struct Conjunto{
     int cont2=0;
     int cont3=0;
     int op;
+    int um, dois;
 
     Ler tudo[20];
 
     void criar(){
 
        if(cont1==20){
-           printf("Nao existe mais espacos para conjuntos serem criados.");
-           printf("\n");
-           printf("\n");
+           printf("Nao existe mais espacos para conjuntos serem criados.\n\n");
        }else{
            cont1++;
            vetor[cont1];
@@ -41,8 +49,7 @@ struct Conjunto{
            for(int i=0;i<cont1;i++){
                printf("%d - ",i);
            }
-           printf("\n");
-           printf("\n");
+           printf("\n\n");
        }
 
     }
@@ -50,8 +57,7 @@ struct Conjunto{
     void ler(){
 
        if(cont1==0){
-           printf("Nao ha o que ser preenchido.\n");
-           printf("\n");
+           printf("Nao ha o que ser preenchido.\n\n");
        }else{
           printf("Escolha um do(s) seguinte(s) conjunto(s) para ler:\n");
           for(int i=0;i<cont1;i++){
@@ -63,6 +69,25 @@ struct Conjunto{
           tudo[op].ler();
        }
 
+    }
+    
+    void juntar(){
+        
+        if(cont1<2){
+            printf("Nao ha conjuntos suficientes para a juncao.\n\n");
+        }else{
+        
+            printf("Escolha 2 dos seguintes conjuntos para fazer a juncao:\n");
+            for(int i=0;i<cont1;i++){
+                printf("%d - ",i);
+            }
+            scanf("%d %d",&um,&dois);
+            
+            tudo[um].tela();
+            tudo[dois].tela();
+            
+            printf("\n\n");
+        }
     }
 
 };
@@ -79,8 +104,8 @@ int main(){
     printf("Digite qual operacao deseja fazer: \n");
     printf("Digite 1 - Criar um conjunto.\n");
     printf("Digite 2 - Ler dados de um conjunto.\n");
-    printf("Digite 3 - Fazer a união de dois conjuntos.\n");
-    printf("Digite 4 - Fazer a interseção de dois conjuntos.\n");
+    printf("Digite 3 - Fazer a uniÃ£o de dois conjuntos.\n");
+    printf("Digite 4 - Fazer a interseÃ§Ã£o de dois conjuntos.\n");
     printf("Digite 5 - Imprimir um conjunto.\n");
     printf("Digite 0 - Fechar sistema.\n");
     scanf("%d%*c",&op);
@@ -96,12 +121,7 @@ int main(){
         tudo.juntar();
     }
 
-
   }
-
-
-
-
 
   return 0;
 }
