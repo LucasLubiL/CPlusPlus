@@ -4,6 +4,10 @@
 struct Ler{
 
    int num[10];
+   int junto[10];
+   int cont=0;
+   int aux=0;
+   int aux1=0;
 
    void ler(){
 
@@ -14,13 +18,32 @@ struct Ler{
      printf("\n");
 
    }
-   
+
    void tela(){
-        
-        for(int i=0;i<10;i++){
-            printf("%d - ",num[i]);
+
+        if(cont==0){
+           for(int i=0;i<10;i++){
+              junto[i]=num[i];
+           }
+           cont=1;
+        }else{
+           for(int i=0;i<10;i++){
+              aux=0;
+              aux1=0;
+              for(int j=0;j<10;j++){
+                 if(num[i]==junto[j]){
+                    aux++;
+                 }
+                 if(num[i]==num[j]){
+                     aux1++;
+                 }
+              }
+              if(aux==0 || aux1==1){
+                 printf("%d ",num[i]);
+              }
+           }
         }
-        
+
     }
 
 };
@@ -70,22 +93,22 @@ struct Conjunto{
        }
 
     }
-    
+
     void juntar(){
-        
+
         if(cont1<2){
             printf("Nao ha conjuntos suficientes para a juncao.\n\n");
         }else{
-        
+
             printf("Escolha 2 dos seguintes conjuntos para fazer a juncao:\n");
             for(int i=0;i<cont1;i++){
                 printf("%d - ",i);
             }
             scanf("%d %d",&um,&dois);
-            
+
             tudo[um].tela();
             tudo[dois].tela();
-            
+
             printf("\n\n");
         }
     }
