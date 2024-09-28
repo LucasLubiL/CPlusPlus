@@ -16,11 +16,6 @@ void ler(int *vetor,int *mi,int *ma,int *maior,int *menor){
         *menor=*vetor;
 
     }
-
-
-
-
-
 }
 
 int main(){
