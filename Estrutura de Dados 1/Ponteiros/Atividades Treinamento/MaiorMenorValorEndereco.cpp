@@ -37,6 +37,7 @@ struct List{
     }
     
     void pushFront(int value){
+        c++;
         Node* n = new Node(value);
         if(empty()){
             first=n;
