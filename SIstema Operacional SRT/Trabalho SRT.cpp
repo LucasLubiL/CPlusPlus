@@ -115,6 +115,13 @@ struct List{
 
      void verificar(int tempo){
 
+        if(tempo>=10){
+            printf("%d| Processos em estado de pronto: ",tempo);
+
+        }else{
+            printf("%d | Processos em estado de pronto: ",tempo);
+        }
+
         int t = 999999;
 
         Node* aux = first;
@@ -123,6 +130,8 @@ struct List{
         while(aux!=NULL){
 
             if(aux->chegada <= tempo){
+               printf("%c - Pocessamento restante: %d ( Tempo de chegada: %d )\n",aux->letra,aux->proc,aux->chegada);
+               printf("  |                                ");
                if(aux->proc<t){
                  t = aux->proc;
                  aux2 = aux;
@@ -132,9 +141,7 @@ struct List{
             aux=aux->next;
 
         }
-
-        printf("%d | ",tempo);
-
+        printf("Processo dentro da CPU: ");
         if(aux2!=NULL){
 
             printf("%c",aux2->letra);
@@ -148,7 +155,12 @@ struct List{
             sum++;
         }
 
-        printf("\n");
+        printf("\n  |\n----------------------------------------------------------------------------------------");
+        if(tempo==sum-1){
+           printf("\n\n");
+           return;
+        }
+        printf("\n  |\n");
 
      }
 
@@ -215,11 +227,11 @@ int main(){
     }
 
     printf("\n\n");
-    printf("                                                      Algoritmo de Escalonamento de Processos baseado no modelo Shortest Remaining Time (SRT).\n\n");
-    printf("                                                                                            Produced by:\n"                                        );
-    printf("                                                                                Alexssander José de Oliveira de Castro\n"                          );
-    printf("                                                                                         Lucas Amaral Luciano\n"                                   );
-    printf("                                                                                       Pablo Vinícius Lima Souza\n"                                );
+    printf("                                                       Algoritmo de Simulação de Escalonamento de Processos baseado no modelo Shortest Remaining Time (SRT).\n\n");
+    printf("                                                                                                   Produced by:\n"                                               );
+    printf("                                                                                       Alexssander José de Oliveira de Castro\n"                                 );
+    printf("                                                                                                Lucas Amaral Luciano\n"                                          );
+    printf("                                                                                              Pablo Vinícius Lima Souza\n"                                       );
 
     return 0;
 }
