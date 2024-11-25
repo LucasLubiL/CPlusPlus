@@ -55,10 +55,16 @@ struct Stack{
             if(aux -> letra == '>'){
                 maior++;
             }else if(aux -> letra == '<'){
-                menor++;
+                if(maior == 0){
+                    menor = 0 ;
+                }else{
+                    menor++;
+                }
+                
             }
             
-            if(maior > 0 && menor > 0){
+            if(maior > 0 && menor == 1){
+                
                 cont++;
                 menor--;
                 maior--;
