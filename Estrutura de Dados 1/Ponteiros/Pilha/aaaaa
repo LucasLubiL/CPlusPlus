@@ -22,18 +22,14 @@ struct Node{
     
 };
 
-struct Estruturas{
+struct Stack{
     
     Node* first;
-    Node* last;
     bool VF;
-    int maior;
     
-    Estruturas(){
+    Stack(){
         first = NULL;
-        last = NULL;
         VF = true;
-        maior = -9999999;
     }
     
     bool empty(){
@@ -43,8 +39,6 @@ struct Estruturas{
     bool verify(){
         return VF == true;
     }
-    
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     void pushStack(int valor){
         
@@ -75,7 +69,49 @@ struct Estruturas{
         
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void remove(){
+        
+        VF = true;
+        
+        if(empty()){
+            return;
+        }
+        
+        Node* aux = first;
+        Node* toDel;
+        while(aux != NULL){
+            
+            toDel = aux;
+            aux = aux -> next;
+            delete(toDel);
+            
+        }
+        
+        first = NULL;
+        
+    }
+    
+};
+
+struct Queue{
+    
+    Node* first;
+    Node* last;
+    bool VF;
+    
+    Queue(){
+        first = NULL;
+        last = NULL;
+        VF = true;
+    }
+    
+    bool empty(){
+        return first == NULL;
+    }
+    
+    bool verify(){
+        return VF == true;
+    }
     
     void pushQueue(int valor){
         
@@ -107,13 +143,58 @@ struct Estruturas{
         
     }
     
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void remove(){
+        
+        VF = true;
+        
+        if(empty()){
+            return;
+        }
+        
+        Node* aux = first;
+        Node* toDel;
+        while(aux != NULL){
+            
+            toDel = aux;
+            aux = aux -> next;
+            delete(toDel);
+            
+        }
+        
+        first = NULL;
+        last = NULL;
+        
+    }
     
-    /*void pushPriQueue(int valor){
+};
+
+struct PriQueue{
+    
+    Node* first;
+    Node* last;
+    bool VF;
+    int maior;
+    
+    PriQueue(){
+        first = NULL;
+        last = NULL;
+        VF = true;
+        maior = -9999999;
+    }
+    
+    bool empty(){
+        return first == NULL;
+    }
+    
+    bool verify(){
+        return VF == true;
+    }
+    
+    void pushPriQueue(int valor){
         
         Node* n = new Node(valor);
         
-        if(valor >= maior){
+        if(valor > maior){
             maior = valor;
         }
         
@@ -137,13 +218,13 @@ struct Estruturas{
         
         if(first == last){
             if(first -> valor == del){
-                delete(first);
-                delete(last);
                 first = NULL;
                 last = NULL;
+                maior = -999999;
                 return;
             }else{
                 VF = false;
+                maior = -9999999;
                 return;
             }
         }
@@ -154,31 +235,41 @@ struct Estruturas{
             
             if(aux -> valor == del && del == maior){
                 Node* toDel = aux;
-                aux -> prev -> next = aux -> next;
-                aux -> next -> prev = aux -> prev;
-                aux -> next -> prev = aux -> prev;
+                if(aux -> prev != NULL){
+                    aux -> prev -> next = aux -> next;
+                }
+                if(aux -> next != NULL){
+                     aux -> next -> prev = aux -> prev;
+                }
                 delete(toDel);
+                
+                Node* tmp = first;
+                maior = -9999999;
+                while(tmp != NULL){
+                    if(tmp -> valor > maior){
+                        maior = tmp -> valor;
+                    }
+                    tmp = tmp -> next;
+                }
                 return;
             }
             
+            aux = aux -> next;
+            
         }
         
-        VF = true;
+        maior = -9999999;
+        VF = false;
         
     }
-    */
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    void remov(){
+    void remove(){
+        
+        maior = -9999999;
+        VF = true;
         
         if(empty()){
             return;
-        }
-        
-        if(first -> next == NULL){
-            delete(first);
-            first = NULL;
         }
         
         Node* aux = first;
@@ -191,6 +282,9 @@ struct Estruturas{
             
         }
         
+        first = NULL;
+        last = NULL;
+        
     }
     
 };
@@ -198,9 +292,9 @@ struct Estruturas{
 int main()
 {
     
-    Estruturas pilha;
-    Estruturas fila;
-    Estruturas priFila;
+    Stack pilha;
+    Queue fila;
+    PriQueue priFila;
     
     int n;
     int a, b;
@@ -214,7 +308,7 @@ int main()
             if(a == 1){
                 pilha.pushStack(b);
                 fila.pushQueue(b);
-               // priFila.pushPriQueue(b);
+                priFila.pushPriQueue(b);
             }else{
                 if(pilha.verify()){
                     pilha.popStack(b);
@@ -222,31 +316,32 @@ int main()
                 if(fila.verify()){
                     fila.popQueue(b);
                 }
-               // if(priFila.verify()){
-               //     priFila.popPriQueue(b);
-               // }
+                if(priFila.verify()){
+                    priFila.popPriQueue(b);
+                }
             }
             
         }
         
-        if(pilha.verify() && fila.verify()/* && priFila.verify()*/){
+        if(pilha.verify() && fila.verify() && priFila.verify()){
             printf("not sure\n");
-        }else if(pilha.verify() && fila.verify() /*|| fila.verify() && priFila.verify() || pilha.verify() && priFila.verify()*/){
+        }else if(pilha.verify() && fila.verify() || fila.verify() && priFila.verify() || pilha.verify() && priFila.verify()){
             printf("not sure\n");
         }else if(pilha.verify()){
             printf("stack\n");
         }else if(fila.verify()){
             printf("queue\n");
-        }//else if(priFila.verify()){
-        // //   printf("priority queue\n");
-       // }
+        }else if(priFila.verify()){
+           printf("priority queue\n");
+        }else{
+            printf("impossible\n");
+        }
         
-        pilha.remov();
-        fila.remov();
-       // priFila.remove();
+        pilha.remove();
+        fila.remove();
+        priFila.remove();
         
     }
     
-
     return 0;
 }
