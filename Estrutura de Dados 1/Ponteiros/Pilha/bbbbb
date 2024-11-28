@@ -243,6 +243,7 @@ struct PriQueue{
             if(cont == 0){
              
                 if(aux -> valor == del && del == maior){
+                    cont = 1;
                     Node* toDel = aux;
                     if(aux -> prev != NULL){
                         aux -> prev -> next = aux -> next;
@@ -253,9 +254,7 @@ struct PriQueue{
                     delete(toDel);
                     
                 }   
-                
-                cont = 1;
-                
+            
             }
             
             if(aux -> next == NULL){
